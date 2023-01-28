@@ -20,11 +20,11 @@ void printer(bool** arr, const int rows, const int cols) {
         {
             if (!arr[i][j])
             {
-                std::cout << "-" << '\t';
+                std::cout << "-" << ' ';
             }
             else
             {
-                std::cout << "*" << '\t';
+                std::cout << "*" << ' ';
             }
         }
         std::cout << '\n';
@@ -165,23 +165,35 @@ void arrayAnnihilator(bool**& arr, const int rows, const int cols) {
 }
 
 int main(int argc, char** argv) {
-    std::cout << "Select the cassette(enter number):\n1.Fumarole\n2.R-pentomino" << std::endl;
+    int num;
     std::ifstream idxs;
-    int cst;
-    std::cin >> cst;
-    if(cst == 1)
-    {
-        idxs.open("Fumarole.txt");
-    }
-    else if (cst == 2)
-    {
-        idxs.open("R-pentomino.txt");
-    }
-    else
-    {
-        std::cout << "There's no such cassette!" << std::endl;
-        exit(EXIT_FAILURE);
-    }
+
+    do {
+        std::cout << "Select the cassette(enter number):\n1.Fumarole\n2.R-pentomino\n3.Bakery" << std::endl;
+        std::cin >> num;
+        if (num == 1)
+        {
+            idxs.open("Fumarole.txt");
+            break;
+        }
+        else if (num == 2)
+        {
+            idxs.open("R-pentomino.txt");
+            break;
+        }
+        else if (num == 3)
+        {
+            idxs.open("Bakery.txt");
+            break;
+        }
+        else
+        {
+            std::system("cls");
+            std::cout << "There's no such cassette!" << std::endl;
+            Sleep(3000);
+            std::system("cls");
+        }
+    } while (true);
 
     if (!idxs.is_open())
     {
@@ -210,6 +222,7 @@ int main(int argc, char** argv) {
 
     idxs.close();
 
+    std::system("cls");
     printer(arr, rows, cols);
 
     int clsCtr = 0;
